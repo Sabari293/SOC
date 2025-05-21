@@ -1,0 +1,27 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+typedef long long ll;
+
+const int m = 1e6 + 5;
+vector<int> d(m, 1); 
+
+void fun() {
+    for (int i = 2; i < m; ++i) {
+        for (int j = i; j < m; j += i) {
+            d[j]++;
+        }
+    }
+}
+
+int main() {
+    fun();
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        cout << d[n] << endl;
+    }
+    return 0;
+}
