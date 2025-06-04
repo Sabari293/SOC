@@ -1,0 +1,31 @@
+
+
+class Solution {
+  public:
+    long long pow1(long long n,long long r){
+        long long l=n%1000003;
+        long long a=1;
+        while(r>0){
+            if(r%2!=0)a=(a*l)%1000003;
+            r=r/2;
+            l=(l*l)%1000003;
+        }
+        return a;
+    }
+    int inv(long long n){
+        return pow1(n,1000001);//1000003 is prime so i am using fermat theorem;
+    }
+    int nCr(long long n, long long r) {
+        n=n%1000003;
+        if(r>n-r)r=n-r;
+        vector<long long> fact(n+1,1);
+        vector<long long> ifact(n+1,1);
+        for(int i=1;i<n+1;i++){
+            fact[i]=(fact[i-1]*i)%1000003;
+            ifact[i]=inv(fact[i]);
+        }
+        long long x=fact[n];
+        long long y=(ifact[n-r]*ifact[r])%1000003;
+        return (x*y)%1000003;
+    }
+};
