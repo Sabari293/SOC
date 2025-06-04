@@ -17,7 +17,6 @@ class Solution {
     }
     int nCr(long long n, long long r) {
         n=n%1000003;
-        if(r>n-r)r=n-r;
         vector<long long> fact(n+1,1);
         vector<long long> ifact(n+1,1);
         for(int i=1;i<n+1;i++){
