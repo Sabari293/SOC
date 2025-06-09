@@ -1,0 +1,25 @@
+    #include<iostream>
+    #include<vector>
+    #include<algorithm>
+    #include<cmath>
+    #include<unordered_map>
+    #include<unordered_set>
+    using namespace std;
+    typedef long long ll;
+    int main() {
+        int n;
+        cin>>n;
+        string s;
+        cin>>s;
+        int a=0,s1=0;
+        unordered_map<int,int> M;
+        M[0]=1; 
+        for(int i=0;i<s.size();i++){
+            s1+=(s[i]-'0');
+            if(M.find(s1-n) != M.end()) {
+                a+= M[s1-n];
+            }
+            M[s1]++;
+        }
+        cout<<a<<endl;
+    }
