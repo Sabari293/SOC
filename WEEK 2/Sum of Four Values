@@ -1,0 +1,38 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#include<cmath>
+#include<unordered_map>
+#include<set>
+#include<map>
+using namespace std;
+typedef long long ll;
+int main() {
+    int n,m;
+    cin >> n>>m;
+    vector<int> A(n);
+    for (int &x : A) cin >> x;
+    unordered_map<int,vector<pair<int,int>>> B;
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            int l = A[i] + A[j];
+            B[l].push_back({i,j});
+        }
+    }
+    for(auto i=B.begin();i!=B.end();i++){
+        int s=i->first;
+        auto v=i->second;
+        if(B.count(m-s)){
+            auto p=B[m-s];
+            for(auto j:v){
+                for(auto k:p){ 
+                    if(j.first != k.first && j.first != k.second && j.second != k.first && j.second != k.second) {
+                        cout << j.first + 1 << " " << j.second + 1 << " " << k.first + 1 << " " << k.second + 1 << endl;
+                        return 0;
+                    }
+                }
+            }
+        }
+    }
+
+}
